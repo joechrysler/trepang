@@ -2,8 +2,15 @@
 %html
   %head
     %title Trepang!
+    %script{:type => 'text/javascript', :src => 'http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'}
+    %script{:type => 'text/javascript', :src => '/js/trepang.js'}
+    %link{:type => 'text/css', :rel => 'stylesheet', :href => '/css/trepang.css'}
   %body
     %h1
       %a{:href => '/'} Trepang!
 
     %h2= feature
+
+    %form{:method => 'post', :action => '#'}
+      %textarea.spec{:name => 'spec', :cols => 80, :rows => 10}= spec
+      %button.save{:type => 'submit'} Save Changes

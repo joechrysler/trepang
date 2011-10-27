@@ -1,0 +1,7 @@
+html, body {
+  font-family: 'Helvetica Neue', Arial, sans-serif, default;
+}
+
+textarea {
+  display: block;
+}

@@ -24,12 +24,29 @@ get '/' do
 end
 
 
-get '/features/:feature' do |feature_filename|
-  feature_name = get_feature_name("features/#{feature_filename}.feature")
+get '/features/:feature' do |feature_name|
+  filename = get_feature_filename(feature_name)
+  feature_name = get_feature_name(filename)
 
   haml :feature, :locals => {
     :pwd => Dir.pwd,
-    :feature => feature_name
+    :feature => feature_name,
+    :spec => get_feature_spec(filename)
+  }
+end
+
+
+post '/features/:feature' do |feature_name|
+  filename = get_feature_filename(feature_name)
+
+  File.open(filename, 'w') do |file|
+    file.puts params[:spec]
+  end
+
+  haml :feature, :locals => {
+    :pwd => Dir.pwd,
+    :feature => feature_name,
+    :spec => params[:spec]
   }
 end
 
@@ -39,8 +56,18 @@ post '/api/run' do
 end
 
 
+def get_feature_filename(feature_name)
+  "features/#{feature_name}.feature"
+end
+
+
 def get_feature_name(filename)
   open(filename) do |file|
     /^Feature: (.*)$/.match(file.readline).captures[0]
   end
+end
+
+
+def get_feature_spec(filename)
+  open(filename).read
 end
