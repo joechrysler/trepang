@@ -1,3 +1,9 @@
 #!/usr/bin/ruby
 
-puts `pwd`
+server_path = File.join(File.dirname(__FILE__), 'server.rb')
+
+IO.popen("ruby -rubygems #{server_path}") do |output|
+  while line = output.gets do
+    puts line
+  end
+end
