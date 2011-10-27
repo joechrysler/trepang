@@ -4,6 +4,10 @@ require 'haml'
 require 'sinatra'
 
 
+set :static, true
+set :public_folder, File.dirname(__FILE__) + '/public'
+
+
 get '/' do
   feature_links = {}
 
@@ -27,6 +31,11 @@ get '/features/:feature' do |feature_filename|
     :pwd => Dir.pwd,
     :feature => feature_name
   }
+end
+
+
+post '/api/run' do
+  `cucumber`
 end
 
 
