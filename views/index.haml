@@ -7,6 +7,6 @@
     %p Running in #{pwd}
 
     %ul
-      - features.each do |feature|
+      - features.keys.sort.each do |key|
         %li
-          %a{:href => feature}= feature
+          %a{:href => "features/#{key}"}= features[key]

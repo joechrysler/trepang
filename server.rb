@@ -1,16 +1,37 @@
+require 'pathname'
+
 require 'haml'
 require 'sinatra'
 
+
 get '/' do
-  features = Dir.glob('features/*').collect do |filename|
-    open(filename) do |file|
-      match = /^Feature: (.*)$/.match file.readline
-      match.captures[0]
-    end
+  feature_links = {}
+
+  Dir.glob('features/*.feature').each do |filename|
+    link = /^features\/(.*)\.feature/.match(filename).captures[0]
+    feature_name = get_feature_name(filename)
+    feature_links[link] = feature_name
   end
 
   haml :index, :locals => {
     :pwd => Dir.pwd,
-    :features => features
+    :features => feature_links
   }
+end
+
+
+get '/features/:feature' do |feature_filename|
+  feature_name = get_feature_name("features/#{feature_filename}.feature")
+
+  haml :feature, :locals => {
+    :pwd => Dir.pwd,
+    :feature => feature_name
+  }
+end
+
+
+def get_feature_name(filename)
+  open(filename) do |file|
+    /^Feature: (.*)$/.match(file.readline).captures[0]
+  end
 end
