@@ -4,3 +4,9 @@
     %title Trepang!
   %body
     %h1 Trepang!
+    %p Running in #{pwd}
+
+    %ul
+      - features.each do |feature|
+        %li
+          %a{:href => feature}= feature
