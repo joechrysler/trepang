@@ -45,7 +45,7 @@ post '/features/:feature' do |feature_name|
 
   haml :feature, :locals => {
     :pwd => Dir.pwd,
-    :feature => feature_name,
+    :feature => get_feature_name(filename),
     :spec => params[:spec]
   }
 end
