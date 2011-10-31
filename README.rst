@@ -1,5 +1,6 @@
 Trepang
 =======
+*fishing for sea cucumbers - how hard could it be?*
 
 A web interface for Cucumber_. To use, navigate to a directory that contains Cucumber tests
 and run ``trepang``.
