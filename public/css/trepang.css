@@ -1,7 +1,21 @@
-html, body {
-  font-family: 'Helvetica Neue', Arial, sans-serif, default;
+.scenario_file a {
+  color: white;
 }
 
-textarea {
-  display: block;
+#modal {
+  background: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  left: 50%;
+  margin-left: -350px;
+  padding: 30px;
+  position: fixed;
+  top: 100px;
+  width: 700px;
+}
+
+#modal #edit {
+  border: none;
+  border-radius: 10px;
+  width: 100%;
 }

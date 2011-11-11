@@ -3,4 +3,7 @@ $(document).ready(function() {
     var item = $(item);
     item.html('<a href="' + item.html() + '">' + item.html() + '</a>');
   });
+
+  var modal = $('<div id="modal"><textarea id="edit" rows="20"></textarea></div>');
+  $('body').append(modal);
 });
