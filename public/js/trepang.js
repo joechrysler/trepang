@@ -1,5 +1,6 @@
 $(document).ready(function() {
-  console.log('here');
-  var step_file = $('.step_file span, .scenario_file');
-  step_file.html("<a href='" + step_file.html() + "'>" + step_file.html() + "</a>");
+  $('.step_file span, .scenario_file').each(function(index, item) {
+    var item = $(item);
+    item.html('<a href="' + item.html() + '">' + item.html() + '</a>');
+  });
 });
