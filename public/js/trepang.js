@@ -14,11 +14,13 @@ $(document).ready(function() {
     var item = $(item);
     var anchor = $('<a>' + item.html() + '</a>');
     var filepath = item.html().split(':')[0];
+    var lineNumber = item.html().split(':')[1];
     item.html(anchor);
 
     anchor.click(function() {
       $.ajax({
         url: '/file/' + filepath,
+        data: {lineNumber: lineNumber},
         success: function (fileContent) {
           $('#edit').val(fileContent);
           modal.slideDown();
