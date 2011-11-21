@@ -22,11 +22,12 @@ get '/file/*' do |path|
 end
 
 post '/file/*' do |path|
+  return 400 if params[:content] == ''
   base_path = `pwd`
 
-  unless params[:content] == ''
-    File::open "#{base_path.chomp}/#{path}", 'w' do |f|
-      f << params[:content]
-    end
+  File.open("#{base_path.chomp}/#{path}", 'w') do |f|
+    f.puts params[:content]
   end
+
+  200
 end
