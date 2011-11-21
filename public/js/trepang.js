@@ -16,7 +16,13 @@ $(document).ready(function() {
     item.html(anchor);
 
     anchor.click(function() {
-      modal.slideDown();
+      $.ajax({
+        url: '/file/' + item.html,
+        success: function (fileContent) {
+          $('#edit').val(fileContent);
+          modal.slideDown();
+        }
+      });
     });
   });
 });

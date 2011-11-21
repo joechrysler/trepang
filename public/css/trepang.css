@@ -1,5 +1,10 @@
 .scenario_file a {
   color: white;
+  cursor: pointer;
+}
+
+.step_file a {
+  cursor: pointer;
 }
 
 #modal {
