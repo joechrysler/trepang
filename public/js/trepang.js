@@ -13,11 +13,12 @@ $(document).ready(function() {
   $('.step_file span, .scenario_file').each(function(index, item) {
     var item = $(item);
     var anchor = $('<a>' + item.html() + '</a>');
+    var filepath = item.html().split(':')[0];
     item.html(anchor);
 
     anchor.click(function() {
       $.ajax({
-        url: '/file/' + item.html,
+        url: '/file/' + filepath,
         success: function (fileContent) {
           $('#edit').val(fileContent);
           modal.slideDown();
