@@ -16,16 +16,13 @@ get '/' do
 end
 
 get '/file/*' do |path|
-  base_path = `pwd`
-
-  File.read("#{base_path.chomp}/#{path}")
+  File.read("#{`pwd`.chomp}/#{path}")
 end
 
 post '/file/*' do |path|
   return 400 if params[:content] == ''
-  base_path = `pwd`
 
-  File.open("#{base_path.chomp}/#{path}", 'w') do |f|
+  File.open("#{`pwd`.chomp}/#{path}", 'w') do |f|
     f.puts params[:content]
   end
 
