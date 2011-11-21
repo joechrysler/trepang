@@ -15,7 +15,8 @@ get '/' do
   html.gsub /<\/body>/, '<link rel="stylesheet" type="text/css" href="/css/trepang.css" /><script type="text/javascript" src="/js/trepang.js"></script></body>'
 end
 
-get '/file/:path' do |path|
+get '/file/*' do |path|
   base_path = `pwd`
-  File.read("#{base_path}/#{path}")
+
+  File.read("#{base_path.chomp}/#{path}")
 end
