@@ -23,6 +23,18 @@ $(document).ready(function() {
     item.html(anchor);
 
     anchor.click(function() {
+      save.click(function() {
+        console.log($('#edit').val());
+        $.ajax({
+          url: '/file/' + filepath,
+          type: 'POST',
+          data: {content: $('#edit').val()},
+          success: function () {
+            modal.slideUp();
+          }
+        });
+      })
+
       $.ajax({
         url: '/file/' + filepath,
         data: {lineNumber: lineNumber},
@@ -32,16 +44,5 @@ $(document).ready(function() {
         }
       });
     });
-
-    save.click(function() {
-      $.ajax({
-        url: '/file/' + filepath,
-        type: 'POST',
-        data: {content: $('#edit').val()},
-        success: function () {
-          modal.slideUp();
-        }
-      });
-    })
   });
 });
