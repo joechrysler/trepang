@@ -20,3 +20,13 @@ get '/file/*' do |path|
 
   File.read("#{base_path.chomp}/#{path}")
 end
+
+post '/file/*' do |path|
+  base_path = `pwd`
+
+  unless params[:content] == ''
+    File::open "#{base_path.chomp}/#{path}", 'w' do |f|
+      f << params[:content]
+    end
+  end
+end
