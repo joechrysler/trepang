@@ -4,8 +4,6 @@ require 'erb'
 require 'haml'
 require 'sinatra'
 
-require 'config'
-
 
 set :static, true
 set :public_folder, File.dirname(__FILE__) + '/public'
@@ -18,5 +16,6 @@ get '/' do
 end
 
 get '/file/:path' do |path|
-  File.read(path)
+  base_path = `pwd`
+  File.read("#{base_path}/#{path}")
 end
