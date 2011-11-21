@@ -12,6 +12,9 @@ $(document).ready(function() {
   var save = $('<button>Save</button>');
   buttons.append(save);
 
+  var saveAndRerun = $('<button>Save & Rerun</button>');
+  buttons.append(saveAndRerun);
+
   modal.hide();
   $('body').append(modal);
 
@@ -37,6 +40,17 @@ $(document).ready(function() {
               data: {content: $('#edit').val()},
               success: function () {
                 modal.slideUp();
+              }
+            });
+          });
+
+          saveAndRerun.click(function() {
+            $.ajax({
+              url: '/file/' + filepath,
+              type: 'POST',
+              data: {content: $('#edit').val()},
+              success: function () {
+                location.reload(true);
               }
             });
           });
