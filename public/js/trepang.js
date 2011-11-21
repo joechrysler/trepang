@@ -1,11 +1,16 @@
 $(document).ready(function() {
-  var button = $('<button id="done">Close</button>');
   var modal = $('<div id="modal"><textarea id="edit" rows="20"></textarea></div>');
-  modal.append(button);
+  var buttons = $('<div class="buttons"></div>')
+  modal.append(buttons);
 
-  button.click(function() {
+  var cancel = $('<button class="cancel">Cancel</button>');
+  buttons.append(cancel);
+  cancel.click(function() {
     modal.slideUp();
   });
+
+  var save = $('<button>Save</button>');
+  buttons.append(save);
 
   modal.hide();
   $('body').append(modal);
@@ -27,5 +32,16 @@ $(document).ready(function() {
         }
       });
     });
+
+    save.click(function() {
+      $.ajax({
+        url: '/file/' + filepath,
+        type: 'POST',
+        data: {content: $('#edit').val()},
+        success: function () {
+          modal.slideUp();
+        }
+      });
+    })
   });
 });

@@ -20,5 +20,18 @@
 }
 
 #modal #edit {
+  border: none;
   width: 100%;
+}
+
+.buttons {
+  float: right;
+}
+
+.cancel {
+  background: none;
+  border: none;
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
 }
